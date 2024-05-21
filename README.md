@@ -1,0 +1,2 @@
+# LabNAM
+SCUT C++ homework
