@@ -266,6 +266,7 @@ Makefile: ..\opencv451_qt\opencv451_qt.pro D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mks
 		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mkspecs\features\qt_config.prf \
 		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mkspecs\win32-msvc\qmake.conf \
 		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mkspecs\features\spec_post.prf \
+		.qmake.stash \
 		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mkspecs\features\exclusive_builds.prf \
 		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mkspecs\common\msvc-version.conf \
 		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mkspecs\features\toolchain.prf \
@@ -295,7 +296,6 @@ Makefile: ..\opencv451_qt\opencv451_qt.pro D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mks
 		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\lib\Qt5Gui.prl \
 		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\lib\Qt5Core.prl \
 		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\lib\qtmain.prl \
-		.qmake.stash \
 		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mkspecs\features\build_pass.prf \
 		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\lib\Qt5Widgetsd.prl \
 		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\lib\Qt5Guid.prl \
@@ -484,6 +484,7 @@ D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mkspecs\features\qt_functions.prf:
 D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mkspecs\features\qt_config.prf:
 D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mkspecs\win32-msvc\qmake.conf:
 D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mkspecs\features\spec_post.prf:
+.qmake.stash:
 D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mkspecs\features\exclusive_builds.prf:
 D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mkspecs\common\msvc-version.conf:
 D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mkspecs\features\toolchain.prf:
@@ -513,7 +514,6 @@ D:\SOFTWARE\Qt\5.14.2\msvc2017_64\lib\Qt5Widgets.prl:
 D:\SOFTWARE\Qt\5.14.2\msvc2017_64\lib\Qt5Gui.prl:
 D:\SOFTWARE\Qt\5.14.2\msvc2017_64\lib\Qt5Core.prl:
 D:\SOFTWARE\Qt\5.14.2\msvc2017_64\lib\qtmain.prl:
-.qmake.stash:
 D:\SOFTWARE\Qt\5.14.2\msvc2017_64\mkspecs\features\build_pass.prf:
 D:\SOFTWARE\Qt\5.14.2\msvc2017_64\lib\Qt5Widgetsd.prl:
 D:\SOFTWARE\Qt\5.14.2\msvc2017_64\lib\Qt5Guid.prl:

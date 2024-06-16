@@ -643,7 +643,23 @@ release\mainwindow.obj: ..\opencv451_qt\mainwindow.cpp ..\opencv451_qt\mainwindo
 		C:\opencv-4.5.1\build\include\opencv2\video.hpp \
 		C:\opencv-4.5.1\build\include\opencv2\video\tracking.hpp \
 		C:\opencv-4.5.1\build\include\opencv2\video\background_segm.hpp \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtCore\QVariant \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtWidgets\QApplication \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtWidgets\qapplication.h \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtCore\qcoreapplication.h \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtCore\qeventloop.h \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtWidgets\qdesktopwidget.h \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtGui\qguiapplication.h \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtGui\qinputmethod.h \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtWidgets\QMenuBar \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmenubar.h \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtWidgets\qmenu.h \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtWidgets\qaction.h \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtWidgets\qactiongroup.h \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtWidgets\QStatusBar \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtWidgets\qstatusbar.h \
+		D:\SOFTWARE\Qt\5.14.2\msvc2017_64\include\QtWidgets\QWidget
 
 release\moc_mainwindow.obj: release\moc_mainwindow.cpp 
 

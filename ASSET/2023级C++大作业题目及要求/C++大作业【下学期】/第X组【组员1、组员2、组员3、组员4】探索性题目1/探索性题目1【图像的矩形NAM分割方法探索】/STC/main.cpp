@@ -1,7 +1,7 @@
 //used in paper 72
 // STC is equal to BSP in conception
-//³£ÒË±ó ×îºóÒ»¸ö²ÎÊıÎª0Ê±Ïàµ±ÓÚÀî×æ¼ÎµÄSTC³ÌĞò ¡¾ÇÒ¿éÊı½ÏÉÙ£¬¶øµ±²ÎÊıÎª1Ê±¿éÊı½Ï¶à¡¿
-//³©Í® ×îºóÒ»¸ö²ÎÊıÎª1Ê±Ïàµ±ÓÚÀî×æ¼ÎµÄSTC³ÌĞò   ¡¾ÇÒ¿éÊı½ÏÉÙ£¬¶øµ±²ÎÊıÎª0Ê±¿éÊı½Ï¶à¡¿
+//å¸¸å®œæ–Œ æœ€åä¸€ä¸ªå‚æ•°ä¸º0æ—¶ç›¸å½“äºæç¥–å˜‰çš„STCç¨‹åº ã€ä¸”å—æ•°è¾ƒå°‘ï¼Œè€Œå½“å‚æ•°ä¸º1æ—¶å—æ•°è¾ƒå¤šã€‘
+//ç•…å½¤ æœ€åä¸€ä¸ªå‚æ•°ä¸º1æ—¶ç›¸å½“äºæç¥–å˜‰çš„STCç¨‹åº   ã€ä¸”å—æ•°è¾ƒå°‘ï¼Œè€Œå½“å‚æ•°ä¸º0æ—¶å—æ•°è¾ƒå¤šã€‘
 
 //  ../gray_images/brain512_1.bmp   ../gray_images/f16XXXgray.bmp    ../gray_images/f16XXXstc.bmp 10 30 225   1       //  used in paper 72
 
@@ -28,7 +28,7 @@
 //  ../gray_images/flightzyp512.bmp      ../gray_images/f16XXXgray.bmp      ../gray_images/f16XXXstc.bmp 10 30 225   1   // used in paper 67
 
 
-// STCMethod.cpp : ¶¨Òå¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úµã¡£ 
+// STCMethod.cpp : å®šä¹‰æ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£ç‚¹ã€‚ 
 #include "stdafx.h"
 #include "FUNCTIONS.h"
 
@@ -37,12 +37,12 @@ int bitnum = 0;
 double thresU = 0;
 double thresVar = 0;
 int cur_block = -1;
-int main( int argc, char** argv )//·Ö±ğÊäÈë1.³ÌĞòµØÖ·2.Ô­²ÊÍ¼3.×ª»µ»Ò¶ÈÍ¼ÎÄ¼şÃû4.×ª»»RNAMCÎÄ¼şÃû5.Í¬Àà¿ì·§Öµ6.¾ùÖµ·§Öµ7.·½²î·§Öµ8.ÇĞ·¨ 1 Ë®Æ½ 0´¹Ö±
+int main( int argc, char** argv )//åˆ†åˆ«è¾“å…¥1.ç¨‹åºåœ°å€2.åŸå½©å›¾3.è½¬åç°åº¦å›¾æ–‡ä»¶å4.è½¬æ¢RNAMCæ–‡ä»¶å5.åŒç±»å¿«é˜€å€¼6.å‡å€¼é˜€å€¼7.æ–¹å·®é˜€å€¼8.åˆ‡æ³• 1 æ°´å¹³ 0å‚ç›´
 {
 	int nmb = 0;
 	IplImage* img1;
   //cout << "start" << endl;
-	if( argc == 8 && (img1 = cvLoadImage( argv[1], 0)) != 0 )   //½«Ô´²ÊÉ«Í¼Ïñimg×ª»¯³ÉÄ¿±ê»ÒÉ«Í¼Ïñ¶ÁÈë
+	if( argc == 8 && (img1 = cvLoadImage( argv[1], 0)) != 0 )   //å°†æºå½©è‰²å›¾åƒimgè½¬åŒ–æˆç›®æ ‡ç°è‰²å›¾åƒè¯»å…¥
 //	if(( img1 = cvLoadImage("cameraman.tif", 0)) != 0)
     {    
 	//	 cout << "img readed" << endl;
@@ -78,26 +78,26 @@ int main( int argc, char** argv )//·Ö±ğÊäÈë1.³ÌĞòµØÖ·2.Ô­²ÊÍ¼3.×ª»µ»Ò¶ÈÍ¼ÎÄ¼şÃû4
 
 
 
-		time_t start,end,time,converge_start, converge_end, converge_time; //¼ÆÊ±±äÁ¿
+		time_t start,end,time,converge_start, converge_end, converge_time; //è®¡æ—¶å˜é‡
     	
 
-	   IplImage* imggest = cvCreateImage(cvGetSize(img1), img1->depth, img1->nChannels); //´´½¨Í¬ÀàĞÍÍ¼Ïñgest
+	   IplImage* imggest = cvCreateImage(cvGetSize(img1), img1->depth, img1->nChannels); //åˆ›å»ºåŒç±»å‹å›¾åƒgest
 	   cvSetZero(imggest);
 
        int num = atoi(argv[7]);
-	   int M = img1->height;  //ĞĞ(after)
-	   int N = img1->width;   //ÁĞ(before)
+	   int M = img1->height;  //è¡Œ(after)
+	   int N = img1->width;   //åˆ—(before)
 	   double epsilon = atof(argv[4]);
 	
 	  
-	   vector<doubleCoordinate> C;//½¨Á¢×ø±ê±í
-	   vector<colorListStandard>P;//½¨Á¢ÑÕÉ«±í
-	   vector<char> Q;//½¨Á¢ÏßĞÔÊ÷±í
-	   treeNode *root=new treeNode; //½¨Á¢¸ù½áµã
+	   vector<doubleCoordinate> C;//å»ºç«‹åæ ‡è¡¨
+	   vector<colorListStandard>P;//å»ºç«‹é¢œè‰²è¡¨
+	   vector<char> Q;//å»ºç«‹çº¿æ€§æ ‘è¡¨
+	   treeNode *root=new treeNode; //å»ºç«‹æ ¹ç»“ç‚¹
 	   InitialNode (root);
 		  thresU = atof(argv[5]);
 		 thresVar = atof(argv[6]);
-	    //´´½¨ËØÃèÍ¼Ïñ
+	    //åˆ›å»ºç´ æå›¾åƒ
 	   IplImage* sketch = cvCreateImage(cvGetSize(img1), IPL_DEPTH_8U,1); 
 	  /* for(int y = 0;y<M;y++)             
 		{
@@ -108,17 +108,17 @@ int main( int argc, char** argv )//·Ö±ğÊäÈë1.³ÌĞòµØÖ·2.Ô­²ÊÍ¼3.×ª»µ»Ò¶ÈÍ¼ÎÄ¼şÃû4
 				 ptrsketch[x]=255;
 				}
 		 }*/
-	  //ËØÃèÍ¼Ïñ³õÊ¼»¯Íê³É
+	  //ç´ æå›¾åƒåˆå§‹åŒ–å®Œæˆ
 
 	   start=clock();
 	   cout << "building tree" << endl;
 	   BuildTreeT (  img1 , root , P , C , num , epsilon , 0 , 0 , M-1 ,N-1);
 		cout << "making  Q" << endl;
-	   LevelOrder(Q , root );//Ñ°ÕÒÍ¬Àà¿é£¬¹¹ÔìÏßĞÔÊ÷±í£¬ÑÕÉ«±í,×ø±ê±í
+	   LevelOrder(Q , root );//å¯»æ‰¾åŒç±»å—ï¼Œæ„é€ çº¿æ€§æ ‘è¡¨ï¼Œé¢œè‰²è¡¨,åæ ‡è¡¨
 
 	   end=clock();
 	   time=end-start;
-	   cout  << "±àÂëËùÓÃÊ±¼ä:" << time << "ms" << endl;
+	   cout  << "ç¼–ç æ‰€ç”¨æ—¶é—´:" << time << "ms" << endl;
 
 	
 
@@ -129,7 +129,7 @@ int main( int argc, char** argv )//·Ö±ğÊäÈë1.³ÌĞòµØÖ·2.Ô­²ÊÍ¼3.×ª»µ»Ò¶ÈÍ¼ÎÄ¼şÃû4
 	   time=end-start;
 
        ofstream fout("Results.txt");
-	   cout  << "½âÂëËùÓÃÊ±¼ä:  " << time << "  ms" << endl<<endl;	
+	   cout  << "è§£ç æ‰€ç”¨æ—¶é—´:  " << time << "  ms" << endl<<endl;	
 
        cout << "epsilon =  " << epsilon << endl << endl;
        fout << "epsilon =  " << epsilon << endl << endl;
@@ -139,9 +139,9 @@ int main( int argc, char** argv )//·Ö±ğÊäÈë1.³ÌĞòµØÖ·2.Ô­²ÊÍ¼3.×ª»µ»Ò¶ÈÍ¼ÎÄ¼şÃû4
       //ofstream fout("Results.txt",ios::app);
 	 
 
-	   cout << "¿éÊı:  " << P.size() << endl<<endl;	
+	   cout << "å—æ•°:  " << P.size() << endl<<endl;	
 
-       fout << "¿éÊı:  " << P.size() << endl<<endl;	
+       fout << "å—æ•°:  " << P.size() << endl<<endl;	
 
 	   cout << fixed << setprecision(4)  << "BPP:" << BPP ( P , M , N , Q ) << endl<<endl;
        fout << fixed << setprecision(4)  << "BPP:  " << BPP ( P , M , N , Q ) << endl<<endl;
@@ -242,8 +242,8 @@ int main( int argc, char** argv )//·Ö±ğÊäÈë1.³ÌĞòµØÖ·2.Ô­²ÊÍ¼3.×ª»µ»Ò¶ÈÍ¼ÎÄ¼şÃû4
      }
    // added by zyp add box end!
 
-      cvShowImage("ÇøÓòºÏ²¢Ê¾ÒâÍ¼1",seg);
-      cvShowImage("ÇøÓòºÏ²¢Ê¾ÒâÍ¼2",seg_line);
+      cvShowImage("åŒºåŸŸåˆå¹¶ç¤ºæ„å›¾1",seg);
+      cvShowImage("åŒºåŸŸåˆå¹¶ç¤ºæ„å›¾2",seg_line);
 
 	  MakeImggest ( imggest , P , C ,all_region);
 
@@ -251,18 +251,18 @@ int main( int argc, char** argv )//·Ö±ğÊäÈë1.³ÌĞòµØÖ·2.Ô­²ÊÍ¼3.×ª»µ»Ò¶ÈÍ¼ÎÄ¼şÃû4
        //cout << "PSNR of segmentation:" << PSNR( img1 ,seg ) << endl<<endl;	
 	   fout << "PSNR of recontructured:  " << PSNR( img1 , imggest ) <<endl<<endl;
 
-       cvNamedWindow("»Ò¶È»¯Í¼Ïñ", CV_WINDOW_AUTOSIZE); 
-	   cvShowImage("»Ò¶È»¯Í¼Ïñ", img1); //ÏÔÊ¾Ô­Ê¼»Ò¶ÈÍ¼Ïñ
-	   cvNamedWindow("QSCÇøÓò·Ö¸îºóµÄÍ¼Ïñ",CV_WINDOW_AUTOSIZE);     //ÇøÓò·Ö¸îºóµÄÍ¼Ïñ
-	   cvShowImage("QSCÇøÓò·Ö¸îºóµÄÍ¼Ïñ",imggest);//ÔØÈë×ª»¯ºóµÄ»Ò¶ÈÍ¼Ïñ   //ÇøÓò·Ö¸îºóµÄÍ¼Ïñ
+       cvNamedWindow("ç°åº¦åŒ–å›¾åƒ", CV_WINDOW_AUTOSIZE); 
+	   cvShowImage("ç°åº¦åŒ–å›¾åƒ", img1); //æ˜¾ç¤ºåŸå§‹ç°åº¦å›¾åƒ
+	   cvNamedWindow("QSCåŒºåŸŸåˆ†å‰²åçš„å›¾åƒ",CV_WINDOW_AUTOSIZE);     //åŒºåŸŸåˆ†å‰²åçš„å›¾åƒ
+	   cvShowImage("QSCåŒºåŸŸåˆ†å‰²åçš„å›¾åƒ",imggest);//è½½å…¥è½¬åŒ–åçš„ç°åº¦å›¾åƒ   //åŒºåŸŸåˆ†å‰²åçš„å›¾åƒ
 
-	   cvSaveImage(argv[2], img1, 0);//°ÑÍ¼ÏñĞ´ÈëÎÄ¼ş
-	  cvSaveImage(argv[3], imggest, 0);//°ÑÍ¼ÏñĞ´ÈëÎÄ¼ş
-	   //»­Ê¾ÒâÍ¼
-	   cvNamedWindow("·Ö¸îÊ¾ÒâÍ¼",CV_WINDOW_AUTOSIZE);
+	   cvSaveImage(argv[2], img1, 0);//æŠŠå›¾åƒå†™å…¥æ–‡ä»¶
+	  cvSaveImage(argv[3], imggest, 0);//æŠŠå›¾åƒå†™å…¥æ–‡ä»¶
+	   //ç”»ç¤ºæ„å›¾
+	   cvNamedWindow("åˆ†å‰²ç¤ºæ„å›¾",CV_WINDOW_AUTOSIZE);
 	        if (N>=256||M>=256)
 	   {
-	   //´´½¨ËØÃèÍ¼Ïñ
+	   //åˆ›å»ºç´ æå›¾åƒ
 	   IplImage* sketch = cvCreateImage(cvGetSize(img1), IPL_DEPTH_8U,1); 
 	   for(int y = 0;y<M;y++)             
 		{
@@ -273,9 +273,9 @@ int main( int argc, char** argv )//·Ö±ğÊäÈë1.³ÌĞòµØÖ·2.Ô­²ÊÍ¼3.×ª»µ»Ò¶ÈÍ¼ÎÄ¼şÃû4
 				 ptrsketch[x]=255;
 				}
 		 }
-	  //ËØÃèÍ¼Ïñ³õÊ¼»¯Íê³É
+	  //ç´ æå›¾åƒåˆå§‹åŒ–å®Œæˆ
      
-	   // ÏòÔ­Ê¼Í¼ÏñÖĞ¼Ó¾ØĞÎÊ±£¬Ö»Ğè½«cvRectangleºÍcvShowImage("·Ö¸îÊ¾ÒâÍ¼",sketch512»òsketch);ÖĞµÄsketch»òsketch512»»Îªimg1¼´¿É£¬¹²ÓĞÁ½´¦ĞŞ¸Ä£¡
+	   // å‘åŸå§‹å›¾åƒä¸­åŠ çŸ©å½¢æ—¶ï¼Œåªéœ€å°†cvRectangleå’ŒcvShowImage("åˆ†å‰²ç¤ºæ„å›¾",sketch512æˆ–sketch);ä¸­çš„sketchæˆ–sketch512æ¢ä¸ºimg1å³å¯ï¼Œå…±æœ‰ä¸¤å¤„ä¿®æ”¹ï¼
 
 
 	   for (int i=0 ; i<C.size();i++)
@@ -294,13 +294,13 @@ int main( int argc, char** argv )//·Ö±ğÊäÈë1.³ÌĞòµØÖ·2.Ô­²ÊÍ¼3.×ª»µ»Ò¶ÈÍ¼ÎÄ¼şÃû4
 
 
 
-	   cvShowImage("·Ö¸îÊ¾ÒâÍ¼",img1);//ÔØÈë×ª»¯ºóµÄ»Ò¶ÈÍ¼Ïñ 
+	   cvShowImage("åˆ†å‰²ç¤ºæ„å›¾",img1);//è½½å…¥è½¬åŒ–åçš„ç°åº¦å›¾åƒ 
      
-	//»­Ê¾ÒâÍ¼½áÊø
+	//ç”»ç¤ºæ„å›¾ç»“æŸ
 	   }
-	   else //·Å´óÍ¼Ïñ
+	   else //æ”¾å¤§å›¾åƒ
 	   {
-	     //´´½¨ËØÃèÍ¼Ïñ
+	     //åˆ›å»ºç´ æå›¾åƒ
 	   IplImage* sketch512 = cvCreateImage(cvSize(512,512), IPL_DEPTH_8U,1); 
 	   int xr = 511/(N-1);
 	   int yr = 511/(M-1);
@@ -313,7 +313,7 @@ int main( int argc, char** argv )//·Ö±ğÊäÈë1.³ÌĞòµØÖ·2.Ô­²ÊÍ¼3.×ª»µ»Ò¶ÈÍ¼ÎÄ¼şÃû4
 				 ptrsketch[x]=255;
 				}
 		 }
-	  //ËØÃèÍ¼Ïñ³õÊ¼»¯Íê³É
+	  //ç´ æå›¾åƒåˆå§‹åŒ–å®Œæˆ
 	   for (int i=0 ; i<C.size();i++)
 	   {
 		   if (C[i].x1==0&&C[i].y1==0)
@@ -326,19 +326,19 @@ int main( int argc, char** argv )//·Ö±ğÊäÈë1.³ÌĞòµØÖ·2.Ô­²ÊÍ¼3.×ª»µ»Ò¶ÈÍ¼ÎÄ¼şÃû4
 		   cvRectangle(img1,cvPoint((C[i].x1-1)*xr,(C[i].y1-1)*yr),cvPoint(C[i].x2*xr,C[i].y2*yr),cvScalar(0x00,0x00,0x00));
 
 	   }
-	   cvShowImage("·Ö¸îÊ¾ÒâÍ¼",img1);//ÔØÈë×ª»¯ºóµÄ»Ò¶ÈÍ¼Ïñ 
-	//»­Ê¾ÒâÍ¼½áÊø
+	   cvShowImage("åˆ†å‰²ç¤ºæ„å›¾",img1);//è½½å…¥è½¬åŒ–åçš„ç°åº¦å›¾åƒ 
+	//ç”»ç¤ºæ„å›¾ç»“æŸ
 	   }
 
-       cvSaveImage("¶şÔªÊ÷·Ö¸îÊ¾ÒâÍ¼.bmp", img1, 0);//°ÑÍ¼ÏñĞ´ÈëÎÄ¼ş , added by zyp
-       cvSaveImage("¶şÔªÊ÷ÇøÓò·Ö¸îºóµÄÍ¼Ïñ.bmp", imggest, 0);//°ÑÍ¼ÏñĞ´ÈëÎÄ¼ş , added by zyp ÖØ½¨ºóµÄÍ¼Ïñ
+       cvSaveImage("äºŒå…ƒæ ‘åˆ†å‰²ç¤ºæ„å›¾.bmp", img1, 0);//æŠŠå›¾åƒå†™å…¥æ–‡ä»¶ , added by zyp
+       cvSaveImage("äºŒå…ƒæ ‘åŒºåŸŸåˆ†å‰²åçš„å›¾åƒ.bmp", imggest, 0);//æŠŠå›¾åƒå†™å…¥æ–‡ä»¶ , added by zyp é‡å»ºåçš„å›¾åƒ
 
-       cvSaveImage("¶şÔªÊ÷ÇøÓòºÏ²¢Ê¾ÒâÍ¼1.bmp", seg, 0);//°ÑÍ¼ÏñĞ´ÈëÎÄ¼ş , added by zyp  ÇøÓòºÏ²¢ºóÓÃ¾ùÖµÌî³äºóµÄÍ¼Ïñ
-       cvSaveImage("¶şÔªÊ÷ÇøÓòºÏ²¢Ê¾ÒâÍ¼2.bmp", seg_line, 0);//°ÑÍ¼ÏñĞ´ÈëÎÄ¼ş , added by zyp
+       cvSaveImage("äºŒå…ƒæ ‘åŒºåŸŸåˆå¹¶ç¤ºæ„å›¾1.bmp", seg, 0);//æŠŠå›¾åƒå†™å…¥æ–‡ä»¶ , added by zyp  åŒºåŸŸåˆå¹¶åç”¨å‡å€¼å¡«å……åçš„å›¾åƒ
+       cvSaveImage("äºŒå…ƒæ ‘åŒºåŸŸåˆå¹¶ç¤ºæ„å›¾2.bmp", seg_line, 0);//æŠŠå›¾åƒå†™å…¥æ–‡ä»¶ , added by zyp
 
 
 	 //// added by zyp begin
- 	//cout << "Display the data matrix of the ¶şÔªÊ÷·Ö¸îÊ¾ÒâÍ¼.bmp:" << endl;
+ 	//cout << "Display the data matrix of the äºŒå…ƒæ ‘åˆ†å‰²ç¤ºæ„å›¾.bmp:" << endl;
 	 //for(int y = 0;y<img1->height;y++)
   //  {
 		//	uchar* ptr = (uchar*) (img1->imageData+y*img1->widthStep);
@@ -353,7 +353,7 @@ int main( int argc, char** argv )//·Ö±ğÊäÈë1.³ÌĞòµØÖ·2.Ô­²ÊÍ¼3.×ª»µ»Ò¶ÈÍ¼ÎÄ¼şÃû4
 
 
 	 //// added by zyp begin
- 	//cout << "Display the data matrix of the ¶şÔªÊ÷ÇøÓò·Ö¸îºóµÄÍ¼Ïñ.bmp:" << endl;
+ 	//cout << "Display the data matrix of the äºŒå…ƒæ ‘åŒºåŸŸåˆ†å‰²åçš„å›¾åƒ.bmp:" << endl;
 	 //for(int y = 0;y<imggest->height;y++)
   //  {
 		//	uchar* ptr = (uchar*) (imggest->imageData+y*imggest->widthStep);
@@ -368,7 +368,7 @@ int main( int argc, char** argv )//·Ö±ğÊäÈë1.³ÌĞòµØÖ·2.Ô­²ÊÍ¼3.×ª»µ»Ò¶ÈÍ¼ÎÄ¼şÃû4
 
 
 	 //// added by zyp begin
- 	//cout << "Display the data matrix of the ¶şÔªÊ÷ÇøÓòºÏ²¢Ê¾ÒâÍ¼1.bmp:" << endl;
+ 	//cout << "Display the data matrix of the äºŒå…ƒæ ‘åŒºåŸŸåˆå¹¶ç¤ºæ„å›¾1.bmp:" << endl;
 	 //for(int y = 0;y<seg->height;y++)
   //  {
 		//	uchar* ptr = (uchar*) (seg->imageData+y*seg->widthStep);
@@ -383,7 +383,7 @@ int main( int argc, char** argv )//·Ö±ğÊäÈë1.³ÌĞòµØÖ·2.Ô­²ÊÍ¼3.×ª»µ»Ò¶ÈÍ¼ÎÄ¼şÃû4
 
 
 	 //// added by zyp begin
- 	//cout << "Display the data matrix of the ¶şÔªÊ÷ÇøÓòºÏ²¢Ê¾ÒâÍ¼2.bmp:" << endl;
+ 	//cout << "Display the data matrix of the äºŒå…ƒæ ‘åŒºåŸŸåˆå¹¶ç¤ºæ„å›¾2.bmp:" << endl;
 	 //for(int y = 0;y<seg_line->height;y++)
   //  {
 		//	uchar* ptr = (uchar*) (seg_line->imageData+y*seg_line->widthStep);
@@ -404,19 +404,19 @@ int main( int argc, char** argv )//·Ö±ğÊäÈë1.³ÌĞòµØÖ·2.Ô­²ÊÍ¼3.×ª»µ»Ò¶ÈÍ¼ÎÄ¼şÃû4
 
 	   }
 
-	 //cout << "2*2¿éÊıÁ¿£º"<< nmb << endl;
-	 cout << "ÇøÓòÊıÁ¿£º  "<< reg_num << endl<< endl;
+	 //cout << "2*2å—æ•°é‡ï¼š"<< nmb << endl;
+	 cout << "åŒºåŸŸæ•°é‡ï¼š  "<< reg_num << endl<< endl;
 
-	 fout << "ÇøÓòÊıÁ¿£º  "<< reg_num << endl<< endl;
+	 fout << "åŒºåŸŸæ•°é‡ï¼š  "<< reg_num << endl<< endl;
      fout.close();
 
 
-       cvWaitKey(0); //µÈ´ı°´¼ü
+       cvWaitKey(0); //ç­‰å¾…æŒ‰é”®
 
 
 	   cvReleaseImage(&img1);
 	   cvReleaseImage(&imggest);
-	   cvDestroyAllWindows( );//¹Ø±Õ
+	   cvDestroyAllWindows( );//å…³é—­
 
       char zyp;
 	  cin >> zyp; 
